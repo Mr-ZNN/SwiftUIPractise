@@ -11,7 +11,7 @@ import SwiftUI
 struct TestSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            TestSwiftUITransitionView()
+            TestSwiftUIStepper()
         }
     }
 }

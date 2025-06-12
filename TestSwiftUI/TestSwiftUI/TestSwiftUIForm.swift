@@ -14,8 +14,12 @@ struct TestSwiftUIForm: View {
         NavigationView {
             Form {
                 Section(header: Text("组头部文字")) {
-                    Text("关于本机")
-                    Text("系统更新")
+                    NavigationLink(destination: Text("关于本机详情")) {
+                        Text("关于本机")
+                    }
+                    NavigationLink(destination: Text("系统更新详情")) {
+                        Text("系统更新")
+                    }
                 }
                 Section {
                     Text("隔空投送")
