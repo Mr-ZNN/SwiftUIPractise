@@ -117,7 +117,7 @@ class RegistrationViewModel: ObservableObject {
         $username
             .receive(on: RunLoop.main)
             .map { username in
-                return username.count > 2
+                return username.count > 0 ? username.count > 2 : true
             }
             .assign(to: \.isUsernameLengthValid, on: self)
             .store(in: &cancellableSet)
@@ -125,7 +125,7 @@ class RegistrationViewModel: ObservableObject {
         $password
             .receive(on: RunLoop.main)
             .map { password in
-                return password.count > 6
+                return password.count > 0 ? password.count > 6 : true
             }
             .assign(to: \.isPasswordLengthValid, on: self)
             .store(in: &cancellableSet)
@@ -133,11 +133,15 @@ class RegistrationViewModel: ObservableObject {
         $password
             .receive(on: RunLoop.main)
             .map { password in
-                let pattern = "[A-Z]"
-                if let _ = password.range(of: pattern, options: .regularExpression) {
-                    return true
+                if password.count > 0 {
+                    let pattern = "[A-Z]"
+                    if let _ = password.range(of: pattern, options: .regularExpression) {
+                        return true
+                    } else {
+                        return false
+                    }
                 } else {
-                    return false
+                    return true
                 }
             }
             .assign(to: \.isPasswordCapitalLetter, on: self)
@@ -145,7 +149,7 @@ class RegistrationViewModel: ObservableObject {
         //两次密码是否相同
         Publishers.CombineLatest($password, $rePassword).receive(on: RunLoop.main)
             .map { password, rePassword in
-                rePassword.isEmpty == false && (password == rePassword)
+                rePassword.count > 0 ? rePassword.isEmpty == false && (password == rePassword) : true
             }
             .assign(to: \.isPasswordConfirmValid, on: self)
             .store(in: &cancellableSet)

@@ -17,10 +17,10 @@ struct TestSwiftUIPath: View {
 struct TestRectanglePath: View {
     var body: some View {
         Path { path in
-            path.move(to: CGPoint(x: 0, y: 0))
-            path.addLine(to: CGPoint(x: 0, y: 200))
+            path.move(to: CGPoint(x: 20, y: 50))
+            path.addLine(to: CGPoint(x: 20, y: 200))
             path.addLine(to: CGPoint(x: 300, y: 200))
-            path.addLine(to: CGPoint(x: 300, y: 0))
+            path.addLine(to: CGPoint(x: 300, y: 50))
             path.closeSubpath()
         }
         .stroke(Color.blue, lineWidth: 10)

@@ -16,16 +16,18 @@ struct TestSwiftUIList: View {
 //简单文字列表
 struct TextList: View {
     var body: some View {
-        //简单的列表
-        List {
-            ForEach(1...4, id: \.self) { index in
-                Text("第\(index)页")
+        VStack {
+            //简单的列表
+            List {
+                ForEach(1...4, id: \.self) { index in
+                    Text("第\(index)页")
+                }
             }
-        }
-        //更简单的遍历方法
-        List {
-            ForEach(1...4, id: \.self) {
-                Text("第\($0)页")
+            //更简单的遍历方法
+            List {
+                ForEach(1...4, id: \.self) {
+                    Text("第\($0)页")
+                }
             }
         }
     }
